@@ -1,0 +1,17 @@
+<div class="grid-container">
+  <div class="grid-left">
+    <app-rooms #rooms (roomChanged)="onRoomChanged($event)"
+               [activeRoomName]="!!activeRoom ? activeRoom.name : null"></app-rooms>
+  </div>
+  <div class="grid-content">
+    <app-camera #camera [style.display]="!!activeRoom ? 'none' : 'block'"></app-camera>
+    <app-members #participants
+                      (leaveRoom)="onLeaveRoom($event)"
+                      (participantsChanged)="onParticipantsChanged($event)"
+                      [style.display]="!!activeRoom ? 'block' : 'none'"
+                      [activeRoomName]="!!activeRoom ? activeRoom.name : null"></app-members>
+  </div>
+  <div class="grid-right">
+    <app-settings #settings (settingsChanged)="onSettingsChanged($event)"></app-settings>
+  </div>
+</div>
